@@ -17,12 +17,8 @@
 
 <body>
 
-
-
-
-
     <div class="wrapper">
-        <h1>CodingMan WordGuess</h1>
+        <h1>CodingMan WordGuess GreenGotts BitCoins</h1>
         <h2>The Only Game Where When Click on Letters You can Lose Bitcoins!!!</h2>
         <p>Use Gui to interact with letters. Read Category. On Last BitCoins Click on Git Hint.</p>
     </div>
@@ -40,7 +36,8 @@
             <button id="reset">Git New Game</button>
         </div>
     </div>
-
+    <p id="goods-text">YOUR GOOD BITCOINS</p>
+    <p id="evils-text">YOUR EVIL BITCOINS</p>
 
 
     <script>
@@ -54,10 +51,10 @@
             var chosenCategory;     // Selected catagory
             var getHint;          // Word getHint
             var word;              // Selected word
-            var guess;             // Geuss
-            var geusses = [];      // Stored geusses
+            var guess;             // Guess
+            var guesses = [];      // Stored guesses
             var bitcoins;             // bitcoins
-            var counter;           // Count correct geusses
+            var counter;           // Count correct guesses
             var space;              // Number of spaces in word '-'
 
             // Get elements
@@ -65,6 +62,11 @@
             var showCatagory = document.getElementById("scatagory");
             var getHint = document.getElementById("hint");
             var showClue = document.getElementById("clue");
+            //Wins and Loses
+            var goods = 0;
+            var evils = 0;
+            var goodsText = document.getElementById("goods-text");
+            var evilsText = document.getElementById("evils-text");
 
 
 
@@ -96,7 +98,7 @@
                 }
             }
 
-            // Create geusses ul
+            // Create guesses ul
             result = function () {
                 wordHolder = document.getElementById('hold');
                 correct = document.createElement('ul');
@@ -109,10 +111,10 @@
                         guess.innerHTML = "-";
                         space = 1;
                     } else {
-                        guess.innerHTML = "_";
+                        guess.innerHTML = "_ ";
                     }
 
-                    geusses.push(guess);
+                    guesses.push(guess);
                     wordHolder.appendChild(correct);
                     correct.appendChild(guess);
                 }
@@ -124,21 +126,24 @@
                 if (bitcoins < 1) {
                     showbitcoins.innerHTML = "Game Over";
                 }
-                for (var i = 0; i < geusses.length; i++) {
-                    if (counter + space === geusses.length) {
+                for (var i = 0; i < guesses.length; i++) {
+                    if (counter + space === guesses.length) {
                         showbitcoins.innerHTML = "You Win!";
+                        goods++;
+                    } else {
+                        evils++;
                     }
                 }
             }
 
-            // Animate man
+            // Animate Codeman
             var animate = function () {
                 var drawMe = bitcoins;
                 drawArray[drawMe]();
             }
 
 
-            // codingman
+            // Coding Codeman
             canvas = function () {
 
                 myStickman = document.getElementById("stickman");
@@ -205,16 +210,16 @@
             // OnClick Function
             check = function () {
                 list.onclick = function () {
-                    var geuss = (this.innerHTML);
+                    var guess = (this.innerHTML);
                     this.setAttribute("class", "active");
                     this.onclick = null;
                     for (var i = 0; i < word.length; i++) {
-                        if (word[i] === geuss) {
-                            geusses[i].innerHTML = geuss;
+                        if (word[i] === guess) {
+                            guesses[i].innerHTML = guess;
                             counter += 1;
                         }
                     }
-                    var j = (word.indexOf(geuss));
+                    var j = (word.indexOf(guess));
                     if (j === -1) {
                         bitcoins -= 1;
                         comments();
@@ -229,7 +234,7 @@
             // Play
             play = function () {
                 categories = [
-                    ["pizza", "pbjtime", "cheese", "spegetti", "icecream", "sourpatchkids", "meatball"],
+                    ["pizza", "pbjtime", "cheese", "spaghetti", "icecream", "sourpatchkids", "meatball"],
                     ["avengers", "harrypotter", "rickandmorty", "starwars", "drwho"],
                     ["disney", "bikinibottom", "pluto", "miami", "prague"]
                 ];
@@ -240,7 +245,7 @@
                 console.log(word);
                 buttons();
 
-                geusses = [];
+                guesses = [];
                 bitcoins = 10;
                 counter = 0;
                 space = 0;
@@ -275,7 +280,12 @@
                 showClue.innerHTML = "";
                 context.clearRect(0, 0, 400, 400);
                 play();
+
+                //Wins and Loses
+                goodsText.textContent = "YOUR GOOD BITCOINS: " + goods;
+                evilsText.textContent = "YOUR EVIL BITCOINS: " + evils;
             }
+
         }
 
 

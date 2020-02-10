@@ -1,5 +1,5 @@
 body {
-    background-color: darkblue;
+    background-color: darkgreen;
     color: white;
     text-align: center;
 }
@@ -10,4 +10,10 @@ body {
 .guess{
     text-align: left;
     display: inline-block;
+}
+#win-text{
+    column-count: 2;
+}
+#wrapper{
+    background-image: src="https://previews.123rf.com/images/aniwhite/aniwhite1803/aniwhite180300033/96521687-cartoon-bitcoin-character-.jpg";
 }
