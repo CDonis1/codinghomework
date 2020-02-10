@@ -1,0 +1,13 @@
+body {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+}
+#alphabet{
+    text-align: left;
+    column-count: 13;
+}
+.guess{
+    text-align: left;
+    display: inline-block;
+}
